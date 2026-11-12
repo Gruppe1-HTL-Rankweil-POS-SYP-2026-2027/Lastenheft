@@ -44,6 +44,18 @@ TODO: Prio durchgehen
 | FA-14 | Beim Beenden der Verbindung zum Roboter bleibt das Terminal des verbundenen Computer benutzbar. | FA | Muss | POS-A1 | TODO |
 | FA-15 | **TODO: und es wird ein Stopp gesendet."** zu requirement | FA | Muss | POS-A1 | TODO |
 
+| ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
+|-|-|-|-|-|-|
+| FA-XX | Im Terminal müssen 4 Werte angezeigt werden. Anzahl gültiger Messpunke, nächstes Objekt mit Entfernung & Winkel, kleinster Abstand je Sektor (vorne, hinten, links, rechts) und die gefahrene Strecke, die aus /odom gelesen wird. Die Werte sollten im Terminal aktualisiert werden und nicht neu ausgegeben werden. | FA | Muss | POS-A3 | Im Terminal werden die richtigen Werte ausgegeben |
+| FA-XX | Ungültige Werte sollten ignoriert werden. | FA | Muss | POS-A3 | Im Terminal sollten anstatt die Ungültigen Werte, der Text "Ungültiger Wert" stehen. |
+
+| ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
+|-|-|-|-|-|-|
+| FA-XX | Wenn eine Bildquelle vorhanen ist, sollte einmal pro Sekunde ein Bild gemacht werden und im Viewer angezeigt werden. | FA | Muss | POS-A4 | Im Viewer sollte jede Sekunde ein neues bild, welches von der Kamera gemacht wird, angezeigt werden. |
+| FA-XX | Topic und Bildtyp sind Parameter, welche in config.yaml eingestellt werden können. | FA | Muss | POS-A4 | Nach dem ändern und speichern von den Parametern, sollten sie geupdated werden. |
+| FA-XX | Mit einem Knopf im Viewer, kann das aktuelle Bild in einem ausgewählten Pfad gespeichert werden. | FA | Muss | POS-A4 | Nach dem drücken des Knopfes, erscheint das Bild im ausgewählten Pfad. |
+
+
 **A2 zu Requirements machen**
 
 ## Use Cases und User Stories
