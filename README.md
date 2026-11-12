@@ -28,7 +28,7 @@ TODO: Prio durchgehen
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
-| FA-01 | Ein Computer soll sich per **TODO** zu dem Roboter verbinden können | FA | Muss | POS-A1 | TODO |
+| FA-01 | Ein Computer soll sich per DDS von ROS2 zu dem Roboter verbinden können | FA | Muss | POS-A1 | TODO |
 | FA-02 | Der Roboter soll durch drücken der Pfeiltasten auf dem verbundenen Computer gesteuert werden können. Pfeiltaste oben: Roboter nach vorne, Pfeiltaste rechts: Roboter nach rechts drehen, Pfeiltaste runter: Roboter nach hinten, Pfeiltaste links: Roboter nach links drehen | FA | Muss | POS-A1 | TODO |
 | FA-03 | Wenn eine Fahrtaste (Pfeiltaste oben & runter) und eine Drehtaste (Pfeiltaste links & rechts) gleichzeitig gedrückt werden, fahrt der Roboter in einem Bogen. | FA | Muss | POS-A1 | Wenn Pfeiltaste vorne und Pfeiltaste links gedrückt werden, wird der rechte Reifen schneller, also fahrt der Roboter nach vorne links in einem Bogen. Das Gleiche auch mit den anderen Tasten. |
 | FA-04 | Die Bewegungen des Roboters sollen durch drücken der Leertaste auf dem verbunden Computer gestoppt werden können. | FA | Muss | POS-A1 | TODO |
