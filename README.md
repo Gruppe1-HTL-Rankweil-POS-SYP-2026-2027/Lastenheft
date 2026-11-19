@@ -73,6 +73,8 @@ Die Fahrgeschwindigkeit des Roboters, mit der sich der Roboter gerade nach vorne
 Die Fahrgeschwindigkeit des Roboters kann, durch druck der Tasten 'W' und 'S' im Terminal des verbundenen Computers, eingestellt werden. 'W': +10% Geschwindigkeit 'S': -10% Geschwindigkeit.
 Während im Terminal des verbundenen Computers die Pfeiltaste nach oben oder die Pfeiltaste nach unten gedrückt wird, beschleunigt der Roboter mit der Fahrgeschwindigkeit nach vorne (bei Pfeiltaste nach oben) oder hinten (bei Pfeiltaste nach unten).
 
+## A3
+
 MOTOR:
 
 <> author: Christof
@@ -94,7 +96,7 @@ LIDAR:
 | FA-XX | Im Terminal müssen 4 Werte angezeigt werden. Anzahl gültiger Messpunke, nächstes Objekt mit Entfernung & Winkel, kleinster Abstand je Sektor (vorne, hinten, links, rechts) und die gefahrene Strecke, die aus /odom gelesen wird. Die Werte sollten im Terminal aktualisiert werden und nicht neu ausgegeben werden. | FA | Muss | POS-A3 | Im Terminal werden die richtigen Werte ausgegeben |
 | FA-XX | Ungültige Werte sollten ignoriert werden. | FA | Muss | POS-A3 | Im Terminal sollten anstatt die Ungültigen Werte, der Text "Ungültiger Wert" stehen. |
 
-CAM:
+## A4
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
