@@ -115,7 +115,7 @@ Während im Terminal des verbundenen Computers die Pfeiltaste nach oben oder die
 | FA-XX | Für die umrechnung der Koordinatensysteme, werden Position und Ausrichtung (mit der Yaw ansicht) aus der Odometrie verwendet. | FA | Muss | POS-B1 | Die Daten für die umrechnung sind die Position und Ausrichtung von der Yaw ansicht, aus der Odometrie. |
 | FA-XX | Die Zelle die am Messpunkt liegt, ist eine **belegte** Zelle. Die restlichen Zellen zwischen dem Roboter und dem Messpunkt sind **frei**. | FA | Muss | POS-B1 | Nur die Zelle am Messpunkt ist eine belegte Zelle, die restlichen sind frei. |
 | FA-XX | Die Karte wird durchgehen live aktualisiert. | FA | Muss | POS-B1 | Die Karte akutalisiert sich. |
-| FA-XX | Die Karte kann lokal als Bild gespeichert werden. | FA | Muss | POS-B1 | Z.B. per Knopfdruck wird die Karte lokal (z.b. als .png) gespeichert. |
+| FA-XX | Die Karte kann lokal als Bild gespeichert werden. | FA | Muss | POS-B1 | Z.B. per Knopfdruck wird die Karte lokal gespeichert. (z.b. als *CoolesBild.png*) |
 | FA-XX | Die Karte wird unter `/map_baseline` veröffentlicht, damit sie nicht mit `/map` von slam_toolbox kollidiert. | FA | Muss | POS-B1 | Man findet die Karte unter `/map_baseline`. |
 | FA-XX | Es sollen folgende Parameter existieren, Zellgröße, Kartengröße, Kartenursprung, maximale Reichweite und Sendeintervall. | FA | Muss | POS-B1 | Die Parameter existieren und speichern die richtigen Werte. |
 | FA-XX | Die aktuelle Karte wird entweder periodisch oder per Anfrage, durch den `map_uploader`, ans Backend gesendet. | FA | Muss | POS-B1 | Das Backend kriegt die aktuelle Karte. |
@@ -149,9 +149,16 @@ Während im Terminal des verbundenen Computers die Pfeiltaste nach oben oder die
 | FA-U02 | Die Backend-Adresse und der API-Schlüssel müssen Parameter des Nodes `map_uploader` sein. | FA | Muss | POS-C | Nach dem Ändern der Backend-Adresse in der Parameterdatei und einem Neustart des Nodes sendet er an die neue Adresse. Der Schlüssel steht nicht im Repository. |
 | FA-U03 | Wenn das Backend nicht erreichbar ist, darf der Node `map_uploader` nicht abstürzen. Er muss den Fehler melden und das Senden später erneut versuchen. | FA | Muss | POS-C | Bei gestopptem Backend läuft der Node weiter und gibt eine Fehlermeldung im Log aus. Nach dem Start des Backends wird die Karte ohne Neustart des Nodes übertragen. |
 
-
-**A2 zu Requirements machen**
-
+## D: Viewer
+| ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
+|-|-|-|-|-|-|
+| FA-XX | Der Viewer muss in einem eigenen Repository sein und ohne ROS funktionsfähig sein. | FA | Muss | POS-D| Der Viewer funktioniert auch ohne ROS. |
+| FA-XX | Der Viewer ruft eine Liste von Karten beim Backend ab und zeigt diese an. | FA | Muss | POS-D| Die Kartenliste wird vom Backend abgerufen und im Viewer angezeigt. |
+| FA-XX | Das Raster einer Karte wird grafisch angezeigt und die verschiedenen Zellenarten werden farbisch angezeigt. *(Siehe B1 **TODO: Genaue Aufgabe hinschreiben** *) | FA | Muss | POS-D| Verschieden Zellen (unbekannt, frei und belegt) haben unterschiedliche Farben. |
+| FA-XX | Jede Karte hat verschiedene Parameter, die auch angezeigt werden. Name, Erstellungszeit, Zellgröße und Größe der Karte. | FA | Muss | POS-D| Die verschiedenen Parameter werden im Viewer für jede Karte angezeigt. |
+| FA-XX | Per Schaltfläche oder Taste wird die Liste der Karten aktualisiert. | FA | Muss | POS-D| Nach dem input wird die Liste erneuert. |
+| FA-XX | Fehlermeldungen die passieren können, wenn das Backend nicht erreicht werden kann, sollen verständlich sein. | FA | Muss | POS-D| Fehlermeldungen die auftauchen sollen leicht verstanden werden können. |
+| FA-XX | Die Technologie für den Viewer ist frei wählbar, soll aber im README.md begründet werden. | FA | Muss | POS-D| Im README.md steht der grund warum wir die Technologie gewählt haben, welche wir haben. |
 ## Use Cases und User Stories
 ## Aktivitätsdiagramm
 ## Sequenzdiagramm
