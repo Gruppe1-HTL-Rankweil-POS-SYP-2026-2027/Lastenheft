@@ -28,6 +28,8 @@ TODO: Vlad, Alexei, Christof co-autor -> richtig anschreiben
 
 TODO: Prio durchgehen
 
+## A1: Steuerung
+
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
 | FA-01 | Ein Computer soll sich per DDS von ROS2 zu dem Roboter verbinden können | FA | Muss | POS-A1 | TODO |
@@ -73,7 +75,7 @@ Die Fahrgeschwindigkeit des Roboters, mit der sich der Roboter gerade nach vorne
 Die Fahrgeschwindigkeit des Roboters kann, durch druck der Tasten 'W' und 'S' im Terminal des verbundenen Computers, eingestellt werden. 'W': +10% Geschwindigkeit 'S': -10% Geschwindigkeit.
 Während im Terminal des verbundenen Computers die Pfeiltaste nach oben oder die Pfeiltaste nach unten gedrückt wird, beschleunigt der Roboter mit der Fahrgeschwindigkeit nach vorne (bei Pfeiltaste nach oben) oder hinten (bei Pfeiltaste nach unten).
 
-MOTOR:
+## A2: Motor
 
 <> author: Christof
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
@@ -87,14 +89,14 @@ MOTOR:
 | FA-XX | wenn roboter Wegen eines Hindernisses vor ihm nicht weiterfahren kann, bleibt drehen und Rückwärtsfahren weiterhin möglich.| FA | Muss | POS-A2 | Roboter kann trotz hinderniss vor ihm nach hinten fahren der sich drehen |
 <>author Christof ende.
 
-LIDAR:
+## A3: Lidar
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
 | FA-XX | Im Terminal müssen 4 Werte angezeigt werden. Anzahl gültiger Messpunke, nächstes Objekt mit Entfernung & Winkel, kleinster Abstand je Sektor (vorne, hinten, links, rechts) und die gefahrene Strecke, die aus /odom gelesen wird. Die Werte sollten im Terminal aktualisiert werden und nicht neu ausgegeben werden. | FA | Muss | POS-A3 | Im Terminal werden die richtigen Werte ausgegeben |
 | FA-XX | Ungültige Werte sollten ignoriert werden. | FA | Muss | POS-A3 | Im Terminal sollten anstatt die Ungültigen Werte, der Text "Ungültiger Wert" stehen. |
 
-CAM:
+## A4: Kamera
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
@@ -102,7 +104,25 @@ CAM:
 | FA-XX | Topic und Bildtyp sind Parameter, welche in config.yaml eingestellt werden können. | FA | Muss | POS-A4 | Nach dem ändern und speichern von den Parametern, sollten sie geupdated werden. |
 | FA-XX | Mit einem Knopf im Viewer, kann das aktuelle Bild in einem ausgewählten Pfad gespeichert werden. | FA | Muss | POS-A4 | Nach dem drücken des Knopfes, erscheint das Bild im ausgewählten Pfad. |
 
-### Teil C: Backend mit FastAPI
+## B1: Einfache Odometrie-Kartierung
+
+| ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
+|-|-|-|-|-|-|
+| FA-XX | `/scan` und `/odom` sollen als Eingabedaten für Karte benutzt werden. | FA | Muss | POS-B1 | Wenn die Karte aus `/scan` und `/odom` gemacht wird. |
+| FA-XX | Die Karte ist ein Raster und soll aus Zellen gemacht werden, deren größe einstellbar ist. | FA | Muss | POS-B1 | Die Karte wird aus einstellbaren Zellen gemacht. |
+| FA-XX | Jede Zelle kann einen Wert haben. -1 steht für unbekannt, 0 steht für frei und ein wert von 1 - 100 zeigt an wie viel von der Zelle belegt ist. | FA | Muss | POS-B1 | Jede Zelle zeigt den richtigen Wert an. |
+| FA-XX | Jeder gültige Messpunkt wird aus dem Roboter-Koordinatensystem in das Karten-Koordinatensystem umgerechnet. | FA | Muss | POS-B1 | Das Roboter-Koordinatensystem wird ohne Fehler in das Karten-Koordinatensystem umgerechnet. |
+| FA-XX | Für die umrechnung der Koordinatensysteme, werden Position und Ausrichtung (mit der Yaw ansicht) aus der Odometrie verwendet. | FA | Muss | POS-B1 | Die Daten für die umrechnung sind die Position und Ausrichtung von der Yaw ansicht, aus der Odometrie. |
+| FA-XX | Die Zelle die am Messpunkt liegt, ist eine **belegte** Zelle. Die restlichen Zellen zwischen dem Roboter und dem Messpunkt sind **frei**. | FA | Muss | POS-B1 | Nur die Zelle am Messpunkt ist eine belegte Zelle, die restlichen sind frei. |
+| FA-XX | Die Karte wird durchgehen live aktualisiert. | FA | Muss | POS-B1 | Die Karte akutalisiert sich. |
+| FA-XX | Die Karte kann lokal als Bild gespeichert werden. | FA | Muss | POS-B1 | Z.B. per Knopfdruck wird die Karte lokal (z.b. als .png) gespeichert. |
+| FA-XX | Die Karte wird unter `/map_baseline` veröffentlicht, damit sie nicht mit `/map` von slam_toolbox kollidiert. | FA | Muss | POS-B1 | Man findet die Karte unter `/map_baseline`. |
+| FA-XX | Es sollen folgende Parameter existieren, Zellgröße, Kartengröße, Kartenursprung, maximale Reichweite und Sendeintervall. | FA | Muss | POS-B1 | Die Parameter existieren und speichern die richtigen Werte. |
+| FA-XX | Die aktuelle Karte wird entweder periodisch oder per Anfrage, durch den `map_uploader`, ans Backend gesendet. | FA | Muss | POS-B1 | Das Backend kriegt die aktuelle Karte. |
+
+**TODO:** Hinweise zur Umsetzung aufschreiben.
+
+### C: Backend mit FastAPI
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
