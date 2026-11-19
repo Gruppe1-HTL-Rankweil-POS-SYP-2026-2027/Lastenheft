@@ -20,6 +20,8 @@ TODO
 
 ## Requirements
 
+MOVEMENT:
+
 Autor: Reichart Tobias
 
 TODO: Vlad co-autor -> richtig anschreiben
@@ -71,10 +73,28 @@ Die Fahrgeschwindigkeit des Roboters, mit der sich der Roboter gerade nach vorne
 Die Fahrgeschwindigkeit des Roboters kann, durch druck der Tasten 'W' und 'S' im Terminal des verbundenen Computers, eingestellt werden. 'W': +10% Geschwindigkeit 'S': -10% Geschwindigkeit.
 Während im Terminal des verbundenen Computers die Pfeiltaste nach oben oder die Pfeiltaste nach unten gedrückt wird, beschleunigt der Roboter mit der Fahrgeschwindigkeit nach vorne (bei Pfeiltaste nach oben) oder hinten (bei Pfeiltaste nach unten).
 
+MOTOR:
+
+<> author: Christof
+| ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
+|-|-|-|-|-|-|
+| FA-XX | Abonniert /cmd_vel_key | FA | Muss | POS-A2 | Fehler wenn /cmd_vel_key nicht lesbar |
+| FA-XX | Abonniert /scan | FA | Muss | POS-A2 | Fehler wenn /scan nicht lesbar |
+| FA-XX | Veröffentlicht geometry_msgs/TwistStamped auf /cmd_vel | FA | Muss | POS-A2 | man bekommt bei /cmd_vel die richtigen daten |
+| FA-XX | man kann maximale lineare und Winkelgeschwindichkeiten in einem Parameter ändern | FA | Muss | POS-A2 | es gibt Parameter zur anpassung der Maximalen Winkel und Linearen-Geschwindichkeit |
+| FA-XX | wenn länger als eine in einem Parameter festlegbare Zeit keinen Bfehl kommt wird gestoppt | FA | Muss | POS-A2 | Der Roboter stoppt nach beenden der Steuerung inerhalb der gewünschten Zeit |
+| FA-XX | Vorwärtsfahrt wird gesperrt, wenn vorne (±30°) ein Hindernis näher als ein in einem Parameter einstellbarer Abstand ist. | FA | Muss | POS-A2 | Roboter stoppt wen inerhalb des gewünschten bereichs vor ihm ein Hinderniss erkannt wird |
+| FA-XX | wenn roboter Wegen eines Hindernisses vor ihm nicht weiterfahren kann, bleibt drehen und Rückwärtsfahren weiterhin möglich.| FA | Muss | POS-A2 | Roboter kann trotz hinderniss vor ihm nach hinten fahren der sich drehen |
+<>author Christof ende.
+
+LIDAR:
+
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
 | FA-XX | Im Terminal müssen 4 Werte angezeigt werden. Anzahl gültiger Messpunke, nächstes Objekt mit Entfernung & Winkel, kleinster Abstand je Sektor (vorne, hinten, links, rechts) und die gefahrene Strecke, die aus /odom gelesen wird. Die Werte sollten im Terminal aktualisiert werden und nicht neu ausgegeben werden. | FA | Muss | POS-A3 | Im Terminal werden die richtigen Werte ausgegeben |
 | FA-XX | Ungültige Werte sollten ignoriert werden. | FA | Muss | POS-A3 | Im Terminal sollten anstatt die Ungültigen Werte, der Text "Ungültiger Wert" stehen. |
+
+CAM:
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
