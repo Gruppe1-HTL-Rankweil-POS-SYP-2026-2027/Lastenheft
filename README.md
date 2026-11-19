@@ -22,7 +22,7 @@ TODO
 
 Autor: Reichart Tobias
 
-TODO: Vlad co-autor -> richtig anschreiben
+TODO: Vlad, Alexei, Christof co-autor -> richtig anschreiben
 
 TODO: Prio durchgehen
 
@@ -81,6 +81,33 @@ Während im Terminal des verbundenen Computers die Pfeiltaste nach oben oder die
 | FA-XX | Wenn eine Bildquelle vorhanen ist, sollte einmal pro Sekunde ein Bild gemacht werden und im Viewer angezeigt werden. | FA | Muss | POS-A4 | Im Viewer sollte jede Sekunde ein neues bild, welches von der Kamera gemacht wird, angezeigt werden. |
 | FA-XX | Topic und Bildtyp sind Parameter, welche in config.yaml eingestellt werden können. | FA | Muss | POS-A4 | Nach dem ändern und speichern von den Parametern, sollten sie geupdated werden. |
 | FA-XX | Mit einem Knopf im Viewer, kann das aktuelle Bild in einem ausgewählten Pfad gespeichert werden. | FA | Muss | POS-A4 | Nach dem drücken des Knopfes, erscheint das Bild im ausgewählten Pfad. |
+
+### Teil C: Backend mit FastAPI
+
+| ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
+|-|-|-|-|-|-|
+| FA-C01 | Das Backend muss über `POST /maps` eine neue Karte im JSON-Format entgegennehmen und speichern. | FA | Muss | POS-C | Eine gültige Anfrage liefert den Statuscode 201 und die ID der neuen Karte. Die Karte ist danach über `GET /maps/{id}` abrufbar. |
+| FA-C02 | Das Backend muss über `GET /maps` eine Liste aller gespeicherten Karten ohne Rasterdaten liefern. | FA | Muss | POS-C | Die Antwort hat den Statuscode 200 und enthält alle gespeicherten Karten mit ihren Metadaten. Kein Eintrag enthält Rasterdaten. Ohne gespeicherte Karten ist die Liste leer. |
+| FA-C03 | Das Backend muss über `GET /maps/{id}` genau eine Karte mit allen Metadaten und Rasterdaten liefern. | FA | Muss | POS-C | Die Antwort hat den Statuscode 200. Metadaten und Rasterdaten stimmen mit den gespeicherten Daten überein. |
+| FA-C04 | Das Backend muss über `DELETE /maps/{id}` eine gespeicherte Karte löschen. | FA | Muss | POS-C | Die Antwort hat den Statuscode 204. Ein anschließendes `GET /maps/{id}` liefert 404 und die Karte fehlt in `GET /maps`. |
+| FA-C05 | Das Backend muss über `GET /health` seinen Status liefern. | FA | Muss | POS-C | Bei laufendem Backend hat die Antwort den Statuscode 200 und enthält ein Statusfeld (z. B. `{"status": "ok"}`). |
+| FA-C06 | Eine Karte muss mindestens aus folgenden Feldern bestehen: ID, Name, Erstellungszeitpunkt, Quelle (`odometry_baseline` oder `slam_toolbox`), Frame, Zellgröße, Breite, Höhe, Ursprung (x, y, yaw) und Rasterdaten. | FA | Muss | POS-C | Die Antwort von `GET /maps/{id}` enthält jedes dieser Felder. |
+| FA-C07 | Das Backend muss die ID einer neuen Karte selbst vergeben. | FA | Muss | POS-C | Zwei nacheinander gespeicherte Karten haben unterschiedliche IDs. Eine in der Anfrage mitgeschickte ID wird nicht übernommen. |
+| FA-C08 | Das Backend muss alle Eingaben mit Pydantic-Modellen validieren und fehlerhafte Daten ablehnen. | FA | Muss | POS-C | Eine Anfrage mit fehlendem Pflichtfeld oder falschem Datentyp liefert den Statuscode 422. Es wird keine Karte gespeichert. |
+| FA-C09 | Das Backend muss prüfen, ob die Rasterdaten zur Kartengröße passen: Die Anzahl der Zellen muss Breite × Höhe entsprechen und jede Zelle muss den Wert -1 oder einen Wert von 0 bis 100 haben. | FA | Soll | POS-C | Eine Anfrage mit falscher Zellenanzahl oder einem Wert außerhalb des Bereichs liefert den Statuscode 422. |
+| FA-C10 | Das Backend muss bei Zugriff auf eine nicht vorhandene Karten-ID einen Fehler melden. | FA | Muss | POS-C | `GET /maps/{id}` und `DELETE /maps/{id}` mit einer unbekannten ID liefern den Statuscode 404. |
+| FA-C11 | Das Backend muss die Karten in einer Datenbank (SQLite) dauerhaft speichern. | FA | Muss | POS-C | Nach einem Neustart des Backends liefert `GET /maps` dieselben Karten wie vor dem Neustart. |
+| FA-C12 | Die schreibenden Endpunkte (`POST /maps`, `DELETE /maps/{id}`) müssen durch einen API-Schlüssel im HTTP-Header geschützt sein. | FA | Muss | POS-C | Eine Anfrage ohne oder mit falschem Schlüssel liefert den Statuscode 401 und ändert keine Daten. Mit richtigem Schlüssel wird die Anfrage ausgeführt. Lesende Endpunkte funktionieren ohne Schlüssel. |
+| FA-C13 | Der API-Schlüssel muss über eine Umgebungsvariable oder eine nicht eingecheckte Datei konfiguriert werden. | FA | Muss | POS-C | Im Repository steht kein Schlüssel, nur eine Vorlage (`.env.example`). Nach dem Ändern der Umgebungsvariable und einem Neustart gilt der neue Schlüssel. |
+| FA-C14 | Das Backend muss eine automatisch erzeugte API-Dokumentation unter `/docs` bereitstellen. | FA | Muss | POS-C | `/docs` ist im Browser erreichbar und zeigt alle fünf Endpunkte. |
+| NFA-C01 | Das Backend muss in einem eigenen GitHub-Repository liegen und auf jedem Rechner mit Python ohne ROS startbar sein. | NFA | Muss | POS-C | Auf einem Rechner ohne ROS-Installation startet das Backend nach der Anleitung in der README und `GET /health` liefert 200. |
+| NFA-C02 | Das Backend muss automatisierte Tests mit pytest und dem FastAPI-Testclient haben. | NFA | Muss | POS-C | `pytest` läuft ohne Fehler durch. Es gibt mindestens einen Test pro Endpunkt und je einen Test für die Fehlerfälle 401, 404 und 422. |
+| NFA-C03 | Das Datenformat einer Karte muss in der README dokumentiert sein. | NFA | Muss | POS-C | Die README enthält je eine Beispiel-Anfrage und eine Beispiel-Antwort für `POST /maps`. |
+|||||||
+|||||||
+| FA-U01 | Der Node `map_uploader` muss die ausgewählte Kartenaufnahme (Baseline oder SLAM) per HTTP-Anfrage `POST /maps` an das Backend senden. | FA | Muss | POS-C | Nach dem Auslösen einer Aufnahme erscheint die Karte mit der richtigen Quelle in `GET /maps`. |
+| FA-U02 | Die Backend-Adresse und der API-Schlüssel müssen Parameter des Nodes `map_uploader` sein. | FA | Muss | POS-C | Nach dem Ändern der Backend-Adresse in der Parameterdatei und einem Neustart des Nodes sendet er an die neue Adresse. Der Schlüssel steht nicht im Repository. |
+| FA-U03 | Wenn das Backend nicht erreichbar ist, darf der Node `map_uploader` nicht abstürzen. Er muss den Fehler melden und das Senden später erneut versuchen. | FA | Muss | POS-C | Bei gestopptem Backend läuft der Node weiter und gibt eine Fehlermeldung im Log aus. Nach dem Start des Backends wird die Karte ohne Neustart des Nodes übertragen. |
 
 
 **A2 zu Requirements machen**
