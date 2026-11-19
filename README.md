@@ -20,8 +20,6 @@ TODO
 
 ## Requirements
 
-MOVEMENT:
-
 Autor: Reichart Tobias
 
 TODO: Vlad, Alexei, Christof co-autor -> richtig anschreiben
@@ -32,64 +30,18 @@ TODO: Prio durchgehen
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
-| FA-01 | Ein Computer soll sich per DDS von ROS2 zu dem Roboter verbinden können | FA | Muss | POS-A1 | TODO |
-| FA-02 | **TODO: ist das requirement noch benötigt?** Der Roboter soll durch drücken der Pfeiltasten auf dem verbundenen Computer gesteuert werden können. Pfeiltaste oben: Roboter nach vorne, Pfeiltaste rechts: Roboter nach rechts drehen, Pfeiltaste runter: Roboter nach hinten, Pfeiltaste links: Roboter nach links drehen | FA | Muss | POS-A1 | TODO |
-| FA-03 | Wenn auf dem verbundenen Computer die Pfeiltaste nach oben oder die Pfeiltaste nach unten gedrückt wird, bewegt sich der Roboter nach vorne oder hinten. | FA | Muss | POS-A1 | Wenn Pfeiltaste oben gedrückt wird, bewegt sich der Roboter nach vorne. Bei Pfeiltaste runter, nach hinten. Wenn beide Tasten gedrückt werden, dann soll der Roboter sich nicht bewegen. Wenn keine der zwei Tasten gedrückt wird soll er stehenbleiben. |
-| FA-03 | Die Geschwindigkeit, mit der sich der Roboter gerade nach vorne oder hinten bewegt, ist 90% der einstellbaren maximalen Fahrgeschwindigkeit. | FA | Muss | POS-A1 | Wenn Pfeiltaste oben gedrückt wird, bewegt sich der Roboter nach vorne. Bei Pfeiltaste runter, nach hinten. Wenn beide Tasten gedrückt werden, dann soll der Roboter sich nicht bewegen. Wenn keine der zwei Tasten gedrückt wird soll er stehenbleiben. |
-| FA-09 | Die maximale Fahrgeschwindigkeit des Roboters soll zur Laufzeit in 10% Schritten **TODO: Passt das? durch den Viewer** auf dem verbundenen Computer geändert werden können. 'W': Geschwindigkeit +10% 'S': Geschwindigkeit -10% (% ) | FA | Muss | POS-A1 | TODO |
-| FA-09 | Die maximale Fahrgeschwindigkeit des Roboters soll zur Laufzeit in 10% Schritten **TODO: Passt das? durch den Viewer** auf dem verbundenen Computer geändert werden können. 'W': Geschwindigkeit +10% 'S': Geschwindigkeit -10% (% ) | FA | Muss | POS-A1 | TODO |
-| FA-03 | Wenn auf dem verbundenen Computer die Pfeiltaste nach links oder die Pfeiltaste nach rechts gedrückt wird und Pfeiltaste nach vorne oder nach unten nicht gedrückt werden, dreht sich der Roboter auf der Stelle nach links oder rechts. | FA | Muss | POS-A1 | Wenn nur Pfeiltaste nach links gedrückt wird, dreht sich der Roboter auf der Stelle nach links (Linker Reifen nach Hinten, Rechter Reifen nach vorne (mit der gleichen Drehgeschwindigkeit)). Das gleiche gilt für Pfeiltaste nach rechts auch (nur halt Drehung nach rechts). Wenn Pfeiltaste nach links und rechts gleichzeitig gedrückt werden, soll der Roboter sich nicht drehen. Bei |
-| FA-04 | Die Bewegungen des Roboters sollen durch drücken der Leertaste auf dem verbunden Computer gestoppt werden können. | FA | Muss | POS-A1 | TODO |
-| FA-05 | Die Verbindung vom Roboter zum verbundenen Computer soll durch drücken der 'q' Taste auf diesem beendet werden können. | FA | Muss | POS-A1 | TODO |
-| FA-06 | Die Tasteninputs auf dem verbundenen Computer sollen, durch ein Terminal auf diesem, an den Roboter gesendet werden sollen. | FA | Muss | POS-A1 | TODO |
-| FA-07 | Die Tasteninputs im Terminal des verbundenen Computer sollen ohne drücken der Enter-Taste an den Roboter gesendet werden sollen. | FA | Muss | POS-A1 | TODO |
-| FA-08 | geometry_msgs/Twist auf /cmd_vel_key mit 10 Hz veröffentlichen **TODO** | FA | Muss | POS-A1 | TODO |
-| FA-10 | Die Geschwindigkeit des Roboters soll im Viewer angezeigt werden sollen **TODO** | FA | Muss | POS-A1 | TODO |
-| FA-11 | Es soll auf dem Raspberry Pi des Roboters ein config.yaml Datei für einstellbare Parameter geben. | FA | Muss | POS-A1 | TODO |
-| FA-12 | In config.yaml soll es einen Parameter für die Start-Geschwindigkeit geben. | FA | Muss | POS-A1 | TODO |
-| FA-13 | Beim Start der Verbindung mit dem Roboter soll dieser die Parameter aus config.yaml benutzten. | FA | Muss | POS-A1 | TODO |
-| FA-14 | Beim Beenden der Verbindung zum Roboter bleibt das Terminal des verbundenen Computer benutzbar. | FA | Muss | POS-A1 | TODO |
-| FA-15 | **TODO: und es wird ein Stopp gesendet."** zu requirement | FA | Muss | POS-A1 | TODO |
-| FA-16 | Abonniert /cmd_vel_key und /scan, veröffentlicht geometry_msgs/TwistStamped auf /cmd_vel (Typ per Parameter umschaltbar) **TODO: zu requirement** | FA | Muss | POS-A2 | TODO |
-| FA-17 | In config.yaml soll die maximale linear Geschwindigkeit als Parameter eingestellt werden können | FA | Muss | POS-A2 | TODO |
-| FA-18 | In config.yaml soll die maximale Winkelgeschwindigkeit als Parameter eingestellt werden können | FA | Muss | POS-A2 | TODO |
-| FA-19 |  | FA | Muss | POS-A2 | TODO |
-| FA-20 | TODO | FA | Muss | POS-A2 | TODO |
-| FA-21 | TODO | FA | Muss | POS-A2 | TODO |
-| FA-22 | TODO | FA | Muss | POS-A2 | TODO |
-| FA-23 | TODO | FA | Muss | POS-A2 | TODO |
-| FA-24 | TODO | FA | Muss | POS-A2 | TODO |
-
-
-Movement **TODO: In Tabelle schreiben**:
-
-
-Ein Computer kann sich per DDS von ROS2 zu dem Roboter verbinden.
-Die Tasteninputs auf dem verbundenen Computer werden, durch ein Terminal auf diesem, an den Roboter gesendet.
-Die Tasteninputs im Terminal des verbundenen Computer werden ohne drücken der Enter-Taste an den Roboter gesendet.
-Die Bewegungen des Roboters sollen durch drücken der Leertaste auf dem verbunden Computer gestoppt werden können.
-Die Verbindung vom Roboter zum verbundenen Computer soll durch drücken der 'q' Taste auf diesem beendet werden können.
-Die Fahrgeschwindigkeit (linear velocity) des Roboters ist in Meter pro Sekunde angegeben. TODO: 
-Die Fahrgeschwindigkeit des Roboters beträgt maximal 90% der maximalen Geschwindigkeit die der Roboter fahren kann.
-Die Fahrgeschwindigkeit des Roboters, mit der sich der Roboter gerade nach vorne oder hinten bewegt, kann zur Laufzeit geändert werden.
-Die Fahrgeschwindigkeit des Roboters kann, durch druck der Tasten 'W' und 'S' im Terminal des verbundenen Computers, eingestellt werden. 'W': +10% Geschwindigkeit 'S': -10% Geschwindigkeit.
-Während im Terminal des verbundenen Computers die Pfeiltaste nach oben oder die Pfeiltaste nach unten gedrückt wird, beschleunigt der Roboter mit der Fahrgeschwindigkeit nach vorne (bei Pfeiltaste nach oben) oder hinten (bei Pfeiltaste nach unten).
-
-## A2: Motor
-
-<> author: Christof
-| ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
-|-|-|-|-|-|-|
-| FA-XX | Abonniert /cmd_vel_key | FA | Muss | POS-A2 | Fehler wenn /cmd_vel_key nicht lesbar |
-| FA-XX | Abonniert /scan | FA | Muss | POS-A2 | Fehler wenn /scan nicht lesbar |
-| FA-XX | Veröffentlicht geometry_msgs/TwistStamped auf /cmd_vel | FA | Muss | POS-A2 | man bekommt bei /cmd_vel die richtigen daten |
-| FA-XX | man kann maximale lineare und Winkelgeschwindichkeiten in einem Parameter ändern | FA | Muss | POS-A2 | es gibt Parameter zur anpassung der Maximalen Winkel und Linearen-Geschwindichkeit |
-| FA-XX | wenn länger als eine in einem Parameter festlegbare Zeit keinen Bfehl kommt wird gestoppt | FA | Muss | POS-A2 | Der Roboter stoppt nach beenden der Steuerung inerhalb der gewünschten Zeit |
-| FA-XX | Vorwärtsfahrt wird gesperrt, wenn vorne (±30°) ein Hindernis näher als ein in einem Parameter einstellbarer Abstand ist. | FA | Muss | POS-A2 | Roboter stoppt wen inerhalb des gewünschten bereichs vor ihm ein Hinderniss erkannt wird |
-| FA-XX | wenn roboter Wegen eines Hindernisses vor ihm nicht weiterfahren kann, bleibt drehen und Rückwärtsfahren weiterhin möglich.| FA | Muss | POS-A2 | Roboter kann trotz hinderniss vor ihm nach hinten fahren der sich drehen |
-<>author Christof ende.
-
-## A3: Lidar
+| FA-xx | Ein Computer kann sich per DDS von ROS2 zu dem Roboter verbinden. | FA | Muss | POS-A1 | Ein Computer kann sich mit dem Roboter verbinden |
+| FA-xx | In einem Terminal in dem **keyboard_teleop** ausgeführt wird, werden alle Tasteninputs ohne das nach jedem Input Enter gedrückt werden muss, gelesen. | FA | Muss | POS-A1 | Die Tasteneingaben werden eingelesen, ohne das man danach Enter drücken muss |
+| FA-xx | **keyboard_teleop** kann durch Drücken der Taste q und Strg+C beendet werden. | FA | Muss | POS-A1 | TODO |
+| FA-xx | Wenn **keyboard_teleop** beendet wird, ist das Terminal wieder normal benutzbar. | FA | Muss | POS-A1 | TODO |
+| FA-xx | Die Bewegungen des Roboters werden durch drücken der Leertaste auf dem verbunden Computer gestoppt. | FA | Muss | POS-A1 | TODO |
+| FA-xx | Die Fahrgeschwindigkeit (linear velocity) des Roboters beträgt maximal der in **TODO: A2- linear velocity parameter linken** definierten maximalen Fahrgeschwindigkeit. | FA |Muss | POS-A1 | TODO |
+| FA-xx | Die Sollgeschwindigkeit des Roboters kann im **keyboard_teleop** Terminal zur Laufzeit in 10% (% von der maximalen Geschwindigkeit die der Roboter fahren kann (0.22m/s)) Schritten geändert werden. | FA | Muss | POS-A1 | TODO |
+| FA-xx | **keyboard_teleop** zeigt in der Ausgabe an, was die aktuelle **Soll**- und **Fahr**geschwindigkeit ist.| FA | Muss | POS-A1 | TODO |
+| FA-xx | **keyboard_teleop** zeigt in der Ausgabe an, was die Winkelgeschwindigkeit ist.| FA | Muss | POS-A1 | TODO |
+| FA-xx | Wenn im **keyboard_teleop** Terminal des verbundenen Computers die Pfeiltaste nach oben oder die Pfeiltaste nach unten gedrückt wird, wird die Fahrgeschwindigkeit (linear velocity x) auf (bei Pfeiltaste nach unten negative) **Sollgeschwindigkeit** gesetzt. | FA | Muss | POS-A1 | TODO |
+| FA-xx | Wenn im **keyboard_teleop** Terminal des verbundenen Computers die Pfeiltaste nach links oder nach rechts gedrückt wird, wird die Winkelgeschwindigkeit auf (bei rechts -) 1 rad/s gesetzt. | FA | Muss | POS-A1 | TODO |
+| FA-xx | Das Movement wird in **geometry_msgs/Twist** Nachrichten (lineare und angulare Velocity) mit **10 Hz** auf den Topic **/cmd_vel_key** veröffentlicht. | FA | Muss | POS-A1 | Auf dem Topic /cmd_vel_key wird in ca. 10 Hz Abständen die  |
 
 | ID | Anforderung | Typ | Priorität | Quelle | Abnahmekriterium |
 |-|-|-|-|-|-|
